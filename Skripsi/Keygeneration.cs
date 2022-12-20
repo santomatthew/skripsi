@@ -139,7 +139,10 @@ namespace Skripsi
 
         private void perpangkatanMatriks()
         {
-            /*polinomial = 3x^2 + 5x + 9*/
+            /*
+             * polinomial = 3x^2 + 5x + 9
+             
+             */
 
             //kalkulasi matriks
             int d1 = int.Parse(this.matriks_d1.Text);
@@ -253,11 +256,11 @@ namespace Skripsi
 
 
 
-            int publicKey = int.Parse(this.key_d1.Text);
+            int privateKey = int.Parse(this.key_d1.Text);
             int[,] matriksQ1 = new int[,] { { 0, 0 }, { 0, 0 } };
 
             ////looping untuk kunci private
-            for (int i = 1; i < publicKey; i++)
+            for (int i = 1; i < privateKey; i++)
             {
                 if (i == 1)
                 {
@@ -306,7 +309,7 @@ namespace Skripsi
                         }
                         else if (j == 3)
                         {
-                            matriksQ1[1, 1] = ((helper[1, 0] * matriksB[0, 1]) + (helper[1, 1] * matriksB[1, 1]))%range ;
+                            matriksQ1[1, 1] = ((helper[1, 0] * matriksB[0, 1]) + (helper[1, 1] * matriksB[1, 1]))% range ;
                         }
                     }
                 }
@@ -316,10 +319,6 @@ namespace Skripsi
             this.kprivat2.Text = matriksQ1[0, 1].ToString();
             this.kprivat3.Text = matriksQ1[1, 0].ToString();
             this.kprivat4.Text = matriksQ1[1, 1].ToString();
-
-
-
-
 
         }
 
@@ -360,8 +359,16 @@ namespace Skripsi
                 FileStream fstream = new FileStream(simpan.FileName, FileMode.Create);
                 StreamWriter sw = new StreamWriter(fstream);
                 SeekOrigin seekorigin = new SeekOrigin();
-                sw.BaseStream.Seek(0, seekorigin);						
-                sw.WriteLine(int.Parse(key_d1.Text));
+                sw.BaseStream.Seek(0, seekorigin);
+                sw.WriteLine(int.Parse(matriks_d1.Text));
+                sw.WriteLine(int.Parse(matriks_d2.Text));
+                sw.WriteLine(int.Parse(matriks_d3.Text));
+                sw.WriteLine(int.Parse(matriks_d4.Text));
+                sw.WriteLine(int.Parse(kprivat1.Text));
+                sw.WriteLine(int.Parse(kprivat2.Text));
+                sw.WriteLine(int.Parse(kprivat3.Text));
+                sw.WriteLine(int.Parse(kprivat4.Text));
+                sw.WriteLine(int.Parse(label_n.Text));
                 sw.Flush();
                 sw.Close();
                 MessageBox.Show("Kunci Publik Disimpan");
@@ -370,24 +377,31 @@ namespace Skripsi
 
         private void kunci_private_Click(object sender, EventArgs e)
         {
-            SaveFileDialog simpan = new SaveFileDialog();
-            simpan = new SaveFileDialog();
-            simpan.Filter = "Private Key (*.privatekey)|*.privatekey";
-            simpan.FileName = "*.privatekey";
-            if (simpan.ShowDialog() == DialogResult.OK)
+            if (key_d1.Text==null)
             {
-                FileStream fstream = new FileStream(simpan.FileName, FileMode.Create);
-                StreamWriter sw = new StreamWriter(fstream);
-                SeekOrigin seekorigin = new SeekOrigin();
-                sw.BaseStream.Seek(0, seekorigin);
-                sw.WriteLine(int.Parse(kprivat1.Text));
-                sw.WriteLine(int.Parse(kprivat2.Text));
-                sw.WriteLine(int.Parse(kprivat3.Text));
-                sw.WriteLine(int.Parse(kprivat4.Text));
-                sw.Flush();
-                sw.Close();
-                MessageBox.Show("Kunci Private Disimpan");
+                MessageBox.Show("Isi terlebih dahulu");
             }
+            else
+            {
+                SaveFileDialog simpan = new SaveFileDialog();
+                simpan = new SaveFileDialog();
+                simpan.Filter = "Private Key (*.privatekey)|*.privatekey";
+                simpan.FileName = "*.privatekey";
+                if (simpan.ShowDialog() == DialogResult.OK)
+                {
+                    FileStream fstream = new FileStream(simpan.FileName, FileMode.Create);
+                    StreamWriter sw = new StreamWriter(fstream);
+                    SeekOrigin seekorigin = new SeekOrigin();
+                    sw.BaseStream.Seek(0, seekorigin);
+                    sw.WriteLine(int.Parse(key_d1.Text));
+                    sw.Flush();
+                    sw.Close();
+                    MessageBox.Show("Kunci Private Disimpan");
+                }
+            }
+
+            
+            
         }
 
         private void encryptToolStripMenuItem_Click(object sender, EventArgs e)

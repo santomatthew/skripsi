@@ -129,7 +129,7 @@
             // 
             // btn_cekprima
             // 
-            this.btn_cekprima.Location = new System.Drawing.Point(9, 149);
+            this.btn_cekprima.Location = new System.Drawing.Point(9, 178);
             this.btn_cekprima.Name = "btn_cekprima";
             this.btn_cekprima.Size = new System.Drawing.Size(352, 34);
             this.btn_cekprima.TabIndex = 8;
@@ -155,7 +155,7 @@
             this.cek_bilangan2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cek_bilangan2.Location = new System.Drawing.Point(166, 70);
             this.cek_bilangan2.Name = "cek_bilangan2";
-            this.cek_bilangan2.Size = new System.Drawing.Size(195, 23);
+            this.cek_bilangan2.Size = new System.Drawing.Size(195, 64);
             this.cek_bilangan2.TabIndex = 12;
             // 
             // groupBox1
@@ -166,7 +166,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBox1.Location = new System.Drawing.Point(12, 42);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(387, 193);
+            this.groupBox1.Size = new System.Drawing.Size(387, 234);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Validasi Bilangan Prima";
@@ -235,7 +235,7 @@
             // 
             // kunci_private
             // 
-            this.kunci_private.Location = new System.Drawing.Point(271, 96);
+            this.kunci_private.Location = new System.Drawing.Point(271, 35);
             this.kunci_private.Name = "kunci_private";
             this.kunci_private.Size = new System.Drawing.Size(167, 34);
             this.kunci_private.TabIndex = 28;
@@ -245,7 +245,7 @@
             // 
             // kunci_publik
             // 
-            this.kunci_publik.Location = new System.Drawing.Point(271, 31);
+            this.kunci_publik.Location = new System.Drawing.Point(271, 90);
             this.kunci_publik.Name = "kunci_publik";
             this.kunci_publik.Size = new System.Drawing.Size(167, 34);
             this.kunci_publik.TabIndex = 27;
@@ -300,9 +300,9 @@
             // 
             // generatekey
             // 
-            this.generatekey.Location = new System.Drawing.Point(6, 194);
+            this.generatekey.Location = new System.Drawing.Point(64, 176);
             this.generatekey.Name = "generatekey";
-            this.generatekey.Size = new System.Drawing.Size(112, 34);
+            this.generatekey.Size = new System.Drawing.Size(166, 43);
             this.generatekey.TabIndex = 16;
             this.generatekey.Text = "Hitung";
             this.generatekey.UseVisualStyleBackColor = true;
@@ -357,7 +357,7 @@
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBox3.Location = new System.Drawing.Point(418, 42);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(319, 193);
+            this.groupBox3.Size = new System.Drawing.Size(319, 234);
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Matriks";
@@ -392,7 +392,7 @@
             // 
             // generateMatriks
             // 
-            this.generateMatriks.Location = new System.Drawing.Point(40, 149);
+            this.generateMatriks.Location = new System.Drawing.Point(43, 178);
             this.generateMatriks.Name = "generateMatriks";
             this.generateMatriks.Size = new System.Drawing.Size(222, 38);
             this.generateMatriks.TabIndex = 19;
@@ -424,7 +424,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1238, 343);
+            this.ClientSize = new System.Drawing.Size(1238, 290);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label_n);

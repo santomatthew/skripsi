@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "5ZYosNLCe9uPZRBsdkljnbWNx+y/KXOS+Csczw0WbfUH4Q51lZ4OgL7jlWQJRVNvLo6nMVxUmpAk8xLKDvGzRQ==",
+  "dgSpecHash": "0Ti7gvntiQUbp+DRkomX5jlaVYs2ngpoaJFu4Vtd5tjtAnyIL3/DuHanPXyE40LSH/Ht8HVdy6WvEMWHy+UiJw==",
   "success": true,
   "projectFilePath": "C:\\Users\\matth\\source\\repos\\Skripsi\\Skripsi\\Skripsi.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\matth\\.nuget\\packages\\docx\\2.4.0\\docx.2.4.0.nupkg.sha512",
+    "C:\\Users\\matth\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\matth\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
+    "C:\\Users\\matth\\.nuget\\packages\\system.drawing.common\\5.0.2\\system.drawing.common.5.0.2.nupkg.sha512",
+    "C:\\Users\\matth\\.nuget\\packages\\system.io.packaging\\4.5.0\\system.io.packaging.4.5.0.nupkg.sha512"
+  ],
   "logs": []
 }
