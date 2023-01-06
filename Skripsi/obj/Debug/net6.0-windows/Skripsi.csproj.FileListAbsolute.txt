@@ -21,3 +21,4 @@ C:\Users\matth\source\repos\Skripsi\Skripsi\obj\Debug\net6.0-windows\Skripsi.Enc
 C:\Users\matth\source\repos\Skripsi\Skripsi\bin\Debug\net6.0-windows\Xceed.Document.NET5.dll
 C:\Users\matth\source\repos\Skripsi\Skripsi\bin\Debug\net6.0-windows\Xceed.Words.NET5.dll
 C:\Users\matth\source\repos\Skripsi\Skripsi\obj\Debug\net6.0-windows\Skripsi.csproj.CopyComplete
+C:\Users\matth\source\repos\Skripsi\Skripsi\obj\Debug\net6.0-windows\Skripsi.Decryption.resources

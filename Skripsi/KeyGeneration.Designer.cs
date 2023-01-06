@@ -38,6 +38,7 @@
             this.cek_bilangan1 = new System.Windows.Forms.Label();
             this.cek_bilangan2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.homeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.keyGenerationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,9 +130,9 @@
             // 
             // btn_cekprima
             // 
-            this.btn_cekprima.Location = new System.Drawing.Point(9, 178);
+            this.btn_cekprima.Location = new System.Drawing.Point(6, 180);
             this.btn_cekprima.Name = "btn_cekprima";
-            this.btn_cekprima.Size = new System.Drawing.Size(352, 34);
+            this.btn_cekprima.Size = new System.Drawing.Size(156, 34);
             this.btn_cekprima.TabIndex = 8;
             this.btn_cekprima.Text = "Cek Bilangan Prima";
             this.btn_cekprima.UseVisualStyleBackColor = true;
@@ -141,9 +142,9 @@
             // 
             this.cek_bilangan1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.cek_bilangan1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cek_bilangan1.Location = new System.Drawing.Point(166, 39);
+            this.cek_bilangan1.Location = new System.Drawing.Point(166, 35);
             this.cek_bilangan1.Name = "cek_bilangan1";
-            this.cek_bilangan1.Size = new System.Drawing.Size(195, 23);
+            this.cek_bilangan1.Size = new System.Drawing.Size(195, 27);
             this.cek_bilangan1.TabIndex = 11;
             // 
             // cek_bilangan2
@@ -155,11 +156,12 @@
             this.cek_bilangan2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cek_bilangan2.Location = new System.Drawing.Point(166, 70);
             this.cek_bilangan2.Name = "cek_bilangan2";
-            this.cek_bilangan2.Size = new System.Drawing.Size(195, 64);
+            this.cek_bilangan2.Size = new System.Drawing.Size(195, 31);
             this.cek_bilangan2.TabIndex = 12;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.btn_cekprima);
             this.groupBox1.Controls.Add(this.cek_bilangan1);
             this.groupBox1.Controls.Add(this.cek_bilangan2);
@@ -171,6 +173,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Validasi Bilangan Prima";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(205, 180);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(156, 34);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Reset";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // menuStrip2
             // 
@@ -210,6 +222,7 @@
             this.decryptToolStripMenuItem.Name = "decryptToolStripMenuItem";
             this.decryptToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.decryptToolStripMenuItem.Text = "Decrypt";
+            this.decryptToolStripMenuItem.Click += new System.EventHandler(this.decryptToolStripMenuItem_Click);
             // 
             // groupBox2
             // 
@@ -489,5 +502,6 @@
         private Label label11;
         private Button kunci_private;
         private Button kunci_publik;
+        private Button button1;
     }
 }

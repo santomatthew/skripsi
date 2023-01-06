@@ -1,3 +1,6 @@
+using System.Numerics;
+using System.Text;
+
 namespace Skripsi
 {
     public partial class Form1 : Form
@@ -40,27 +43,39 @@ namespace Skripsi
 
         private string cekPrimaFermat(int x)
         {
-            string hasil = "Bilangan Prima";
+            string hasil = "";
 
+            BigInteger perhitungan = 0;
 
             for (int i = 2; i < x; i++)
             {
-                int perpangkatan = i;
-                for (int j = 2; j < x - 1; j++)
+               perhitungan = i;   
+
+                for (int j = 2; j <= x - 1; j++)
                 {
-                    perpangkatan = perpangkatan * i;
+                    perhitungan *= i;
+                    //Console.WriteLine("ini perpangkatan " + i + " pangkat " + j + " yaitu = " + perhitungan);
                 }
 
 
-                if (perpangkatan % x == 1)
+                //Console.WriteLine("Hasil mod = " + perhitungan % x);
+
+                if (perhitungan % x == 1)
                 {
-                    hasil = "Bukan Bilangan Prima";
+                    hasil = "Bilangan Prima";
+                    
                 }
                 else
                 {
-                    hasil = "Bilangan Prima";
+                    hasil = "Bukan Bilangan Prima";
+                    return hasil;
+                   
                 }
+
+                //Console.WriteLine("===========");
+                //Console.WriteLine("Ini adalah cek bilangan = " + x + " yaitu : " + perhitungan);
             }
+
             return hasil;
 
         }
@@ -128,6 +143,15 @@ namespace Skripsi
                 this.matriks_d2.Text = matriksd2.ToString();
                 this.matriks_d3.Text = matriksd3.ToString();
                 this.matriks_d4.Text = matriksd4.ToString();
+
+                //string s = "Santo";
+                //byte[] arrayASCII = Encoding.ASCII.GetBytes(s);
+                
+                //foreach(byte b in arrayASCII)
+                //{
+
+                //Console.WriteLine(b);
+                //}
             }
         }
 
@@ -409,6 +433,22 @@ namespace Skripsi
             Encryptform encryptform = new Encryptform();
             encryptform.Show();
             this.Hide();
+        }
+
+        private void decryptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Decryption decryption = new Decryption();
+            decryption.Show();
+            this.Hide();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            label_n.Text = "";
+            prima1.Text = "";
+            prima2.Text = "";
+            cek_bilangan1.Text = "";
+            cek_bilangan2.Text = "";
         }
     }
 }

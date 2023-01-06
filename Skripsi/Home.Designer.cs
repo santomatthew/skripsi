@@ -80,6 +80,7 @@
             this.decryptToolStripMenuItem.Name = "decryptToolStripMenuItem";
             this.decryptToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.decryptToolStripMenuItem.Text = "Decrypt";
+            this.decryptToolStripMenuItem.Click += new System.EventHandler(this.decryptToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 

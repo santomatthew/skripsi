@@ -26,5 +26,12 @@
             encryptform.Show();
             this.Hide();
         }
+
+        private void decryptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Decryption decryption = new Decryption();
+            decryption.Show();
+            this.Hide();
+        }
     }
 }
