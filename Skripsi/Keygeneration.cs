@@ -417,7 +417,12 @@ namespace Skripsi
                     StreamWriter sw = new StreamWriter(fstream);
                     SeekOrigin seekorigin = new SeekOrigin();
                     sw.BaseStream.Seek(0, seekorigin);
+                    sw.WriteLine(int.Parse(matriks_d1.Text));
+                    sw.WriteLine(int.Parse(matriks_d2.Text));
+                    sw.WriteLine(int.Parse(matriks_d3.Text));
+                    sw.WriteLine(int.Parse(matriks_d4.Text));
                     sw.WriteLine(int.Parse(key_d1.Text));
+                    sw.WriteLine(int.Parse(label_n.Text));
                     sw.Flush();
                     sw.Close();
                     MessageBox.Show("Kunci Private Disimpan");

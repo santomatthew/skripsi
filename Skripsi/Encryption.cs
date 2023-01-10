@@ -16,18 +16,19 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Skripsi
 {
+
     public partial class Encryptform : Form
     {
 
-
-        int[,] matriksB = { { 0, 0 }, { 0, 0 } };//variabel matriks B
-
         int[,] kuncipub = { { 0, 0 }, { 0, 0 } };// variabel matriks Q1
+        int[,] matriksB = { { 0, 0 }, { 0, 0 } };//variabel matriks B
         int range;
+
         public Encryptform()
         {
             InitializeComponent();
             this.BackColor = Color.AliceBlue;
+            
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -101,19 +102,27 @@ namespace Skripsi
 
                 if (open.ShowDialog() == DialogResult.OK)
                 {
+                    int[,] helperMatriksB = { { 0, 0 }, { 0, 0 } };
                     string[] lines = File.ReadAllLines(open.FileName);
+                
                     int helper = 0;
                     int helper2 = 4;
                     for (int i2 = 0; i2 <= 1; i2++)
                     {
                         for (int i3 = 0; i3 <= 1; i3++)
                         {
-                            matriksB[i2, i3] = Convert.ToInt32(lines[helper]);
+                            helperMatriksB[i2, i3] = Convert.ToInt32(lines[helper]);
                             helper++;
-                            //Console.WriteLine("matriksb["+i2+','+i3+"]= " + matriksB[i2, i3]);
+                            Console.WriteLine("matriksb[" + i2 + ',' + i3 + "]= " + helperMatriksB[i2, i3]);
                         }
                     }
+                    //Console.WriteLine(helperMatriksB[0, 0]);
+                    //Console.WriteLine(helperMatriksB[0, 1]);
+                    //Console.WriteLine(helperMatriksB[1, 0]);
+                    //Console.WriteLine(helperMatriksB[1, 1]);
+                    matriksB = helperMatriksB;
                     helper = 0;
+                    
 
                     for (int j2 = 0; j2 <= 1; j2++)
                     {
@@ -121,7 +130,7 @@ namespace Skripsi
                         {
                             kuncipub[j2, j3] = Convert.ToInt32(lines[helper2]);
                             helper2++;
-                            //Console.WriteLine("kuncipub[" + j2 + ',' + j3 + "]= " + kuncipub[j2, j3]);
+                            Console.WriteLine("kuncipub[" + j2 + ',' + j3 + "]= " + kuncipub[j2, j3]);
                         }
                     }
                     helper2 = 4;
@@ -164,6 +173,7 @@ namespace Skripsi
                 }
 
                 kpublik.Text = string.Join("\n", result);
+                
             }
 
             catch (Exception ex)
@@ -192,6 +202,7 @@ namespace Skripsi
             }
             else
             {
+               
                 ciphertext.Text = "";
                 string spasi = " ";
                 string getPlaintext = plaintext.Text;
@@ -295,7 +306,7 @@ namespace Skripsi
                 int tampilanTemp = 0;
                 int matriksTemp = 0;
                 byte[] plaintextArray = Encoding.ASCII.GetBytes(fixPlaintext);
-                string[] tampilan = new string[plaintextArray.Length / 4];
+                string[] tampilan = new string[(plaintextArray.Length / 4)+1];
                 int[,] temp = { { 0, 0 }, { 0, 0 } };
 
                 for (int i = 0; i < plaintextArray.Length; i += 4)
@@ -332,10 +343,15 @@ namespace Skripsi
                     //Console.WriteLine("matriksTemp = " + matriksTemp);
                     Console.WriteLine("============");
 
+
                     //Console.WriteLine(matriksB[0, 0]);
                     //Console.WriteLine(matriksB[0, 1]);
                     //Console.WriteLine(matriksB[1, 0]);
                     //Console.WriteLine(matriksB[1, 1]);
+                    //Console.WriteLine(kuncipub[0, 1]);
+                    //Console.WriteLine(kuncipub[1, 0]);
+                    //Console.WriteLine(kuncipub[1, 1]);
+
 
                     int[,] matriksCipherText = new int[2, 2];
 
@@ -416,38 +432,40 @@ namespace Skripsi
                     {
                         int[,] helperMatriksK =
                          {
-                            { matriksK1[0, 0], matriksK1[0, 1] },
-                            { matriksK1[1, 0], matriksK1[1, 1] }
+                            { matriksK[0, 0], matriksK[0, 1] },
+                            { matriksK[1, 0], matriksK[1, 1] }
                         };
                         for (int j = 0; j <= 3; j++)
                         {
                             if (j == 0)
                             {
-                                matriksK1[0, 0] = ((helperMatriksK[0, 0] * matriksB[0, 0]) + (helperMatriksK[0, 1] * matriksB[1, 0])) % range;
+                                matriksK[0, 0] = ((helperMatriksK[0, 0] * matriksB[0, 0]) + (helperMatriksK[0, 1] * matriksB[1, 0])) % range;
 
                             }
                             else if (j == 1)
                             {
-                                matriksK1[0, 1] = ((helperMatriksK[0, 0] * matriksB[0, 1]) + (helperMatriksK[0, 1] * matriksB[1, 1])) % range;
+                                matriksK[0, 1] = ((helperMatriksK[0, 0] * matriksB[0, 1]) + (helperMatriksK[0, 1] * matriksB[1, 1])) % range;
                             }
                             else if (j == 2)
                             {
-                                matriksK1[1, 0] = ((helperMatriksK[1, 0] * matriksB[0, 0]) + (helperMatriksK[1, 1] * matriksB[1, 0])) % range;
+                                matriksK[1, 0] = ((helperMatriksK[1, 0] * matriksB[0, 0]) + (helperMatriksK[1, 1] * matriksB[1, 0])) % range;
                             }
                             else if (j == 3)
                             {
-                                matriksK1[1, 1] = ((helperMatriksK[1, 0] * matriksB[0, 1]) + (helperMatriksK[1, 1] * matriksB[1, 1])) % range;
+                                matriksK[1, 1] = ((helperMatriksK[1, 0] * matriksB[0, 1]) + (helperMatriksK[1, 1] * matriksB[1, 1])) % range;
                             }
                         }
                     }
 
-                    string hasil = String.Join(", ", tampilan);
-                    ciphertext.Text = hasil;
-
                 }
+                    tampilan[tampilanTemp] = matriksK[0, 0].ToString() + " " + matriksK[0, 1].ToString() + " " + matriksK[1, 0].ToString() + " " + matriksK[1, 1].ToString();
+                    string hasil = String.Join(",", tampilan);
+                    ciphertext.Text = hasil;
 
             }
         }
+
+
             private void button3_Click(object sender, EventArgs e)
             {
                 if (ciphertext.Text != "")
@@ -470,7 +488,7 @@ namespace Skripsi
                         //    sw.Write(cipherteks[i]);
                         //}
                         //sw.Write(ciphertext.Text);
-                        sw.Write(ciphertext.Text);
+                        sw.WriteLine(ciphertext.Text);
                         sw.Flush();
                         sw.Close();
                         MessageBox.Show("File Berhasil Disimpan");
@@ -478,7 +496,7 @@ namespace Skripsi
                 }
                 else
                 {
-                    MessageBox.Show("CIphertext blum ada");
+                    MessageBox.Show("Ciphertext blum ada");
                 }
             }
 
@@ -646,15 +664,169 @@ namespace Skripsi
                 }
                 else
                 {
-                    int r = int.Parse(textBox3.Text);
+                    
                     int p = int.Parse(textBox1.Text);
                     int a = int.Parse(label12.Text);
+                    int s = int.Parse(textBox2.Text);
 
-                    BigInteger x = perpangkatan(a, r) % p;
-                    //Console.WriteLine(x);
+                //BigInteger x = perpangkatan(a, -s) % p;
 
+                    int moduloInvers = modInverse(a, p);
+                    BigInteger v = perpangkatan(moduloInvers, s) % p;
+
+                    label13.Text = v.ToString();
+                //Console.WriteLine(x);
+
+            }
+            }
+
+        private static int modInverse(int a, int m)
+        {
+            for (int x = 1; x < m; x++)
+            {
+                if (((a % m) * (x % m)) % m == 1)
+                {
+                    return x;
                 }
             }
+            return 1;
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if(label10.Text == "")
+            {
+                MessageBox.Show("q belum terisi");
+            }
+            textBox3.Text = "";
+            Random random = new Random();
+            int r = random.Next(2, int.Parse(label10.Text));
+            textBox3.Text = r.ToString();
+        }
+
+        private void sign_Click(object sender, EventArgs e)
+        {
+            //signedCiphertext.Text = "";
+            //string encryptedText = ciphertext.Text;
+            int x = int.Parse(label_x.Text);
+            string[] encryptedText = ciphertext.Text.Split(",");
+            string[] newEncryptedText = new string[encryptedText.Length + 1];
+            for(int i=0; i < newEncryptedText.Length-1; i++)
+            {
+                newEncryptedText[i] = encryptedText[i];
+            }
+            newEncryptedText[newEncryptedText.Length-1] = x.ToString();
+            string hasil = string.Join(" ", newEncryptedText);
+            //Console.Write(hasil);
+            string[] data = hasil.Split(" ");
+            Console.WriteLine("data.length" + data.Length);
+
+            //string dataJoined = string.Join("", data);
+            byte[] realData = new byte[data.Length];
+
+            for(int i = 0; i < realData.Length; i++)
+            {
+                realData[i] = byte.Parse(data[i]);
+                //Console.WriteLine(realData[i]);
+            }
+            Console.WriteLine("realdata.length" + realData.Length);
+
+            //byte[] hashed = new byte[16];
+
+            //string hashed2 = CreateMD5Hash(realData);
+            string hashed = "";
+            //Console.WriteLine("hashed2 = " + hashed2);
+
+
+            using (var md5Hash = MD5.Create())
+            {
+                // Generate hash value(Byte Array) for input data
+                //System.Security.Cryptography.MD5CryptoServiceProvider x = new System.Security.Cryptography.MD5CryptoServiceProvider();
+
+                var hashBytes = md5Hash.ComputeHash(realData);
+                string[] hashedArray = new string[hashBytes.Length];
+
+                Console.WriteLine("hashBytes.length = " + hashBytes.Length);
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    hashedArray[i] = hashBytes[i].ToString();
+                    //Console.Write(hashBytes[i]);
+                }
+                string arrayToJoined = String.Join("", hashedArray);
+                //Console.WriteLine("arrayToJoined= " + arrayToJoined);
+                BigInteger hashedArrayJoined = BigInteger.Parse(arrayToJoined);
+                string hexedHashedArrayJoined = hashedArrayJoined.ToString("X");
+                Console.WriteLine("hexedHashedArrayJoined = " + hexedHashedArrayJoined);
+                hashed = hexedHashedArrayJoined;
+
+                //hashed = Convert.ToHexString(hashBytes);
+            }
+
+            //hashed = int.Parse(hashed, System.Globalization.NumberStyles.HexNumber);
+            BigInteger hashedThing = BigInteger.Parse(hashed, System.Globalization.NumberStyles.HexNumber);
+            
+            int q = int.Parse(label10.Text);
+            int r = int.Parse(textBox3.Text);
+            int s = int.Parse(textBox2.Text);
+            BigInteger y = (r + (s * hashedThing)) % q;
+
+            int v = int.Parse(label13.Text);
+
+            Console.WriteLine("y = " + y);
+            int a = int.Parse(label12.Text);
+            int p = int.Parse(textBox1.Text);
+            BigInteger aPangkaty = perpangkatan(a, (int)y);
+            Console.WriteLine(aPangkaty);
+            BigInteger vPangkateModP = Power(v, hashedThing, p);
+            Console.WriteLine(vPangkateModP);
+
+            BigInteger xAksen = aPangkaty * vPangkateModP;
+
+            Console.WriteLine(xAksen);
+
+            ciphertext.Text = string.Join(",", hasil);
+
+        }
+
+        static long Power(int x, BigInteger y, int p)
+        {
+            int res = 1; // Initialize result
+
+            x = x % p; // Update x if it is more than or
+                       // equal to p
+
+            if (x == 0)
+                return 0; // In case x is divisible by p;
+
+            while (y > 0)
+            {
+
+                // If y is odd, multiply x with result
+                if ((y & 1) != 0)
+                    res = (res * x) % p;
+
+                // y must be even now
+                y = y >> 1; // y = y/2
+                x = (x * x) % p;
+            }
+            return res;
+        }
+
+        private void generate_x_Click(object sender, EventArgs e)
+        {
+            label_x.Text = "";
+            int r = int.Parse(textBox3.Text);
+            int p = int.Parse(textBox1.Text);
+            int a = int.Parse(label12.Text);
+
+            BigInteger x = perpangkatan(a, r) % p;
+            label_x.Text = x.ToString();
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+    }
     }
 

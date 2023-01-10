@@ -4,15 +4,19 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Status;
 
 namespace Skripsi
 {
     public partial class Decryption : Form
     {
+        int[,] matriksB = { {0,0 },{ 0, 0 } };
+        int range = 0;
         public Decryption()
         {
             InitializeComponent();
@@ -57,7 +61,38 @@ namespace Skripsi
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                OpenFileDialog open = new OpenFileDialog();
+                open.Filter = "Private Key (*.privatekey)|*.privatekey";
+                open.FileName = "";
+                if (open.ShowDialog() == DialogResult.OK)
+                {
+                    string[] lines = File.ReadAllLines(open.FileName);
+                    int linesTemp = 0;
+                    for(int i = 0; i <= 1; i++)
+                    {
+                        for(int j = 0; j <= 1; j++)
+                        {
+                            matriksB[i, j] = int.Parse(lines[linesTemp]);
+                            linesTemp++;
+                        }
+                    }
+
+                    Console.WriteLine(matriksB[0, 0]);
+                    Console.WriteLine(matriksB[0, 1]);
+                    Console.WriteLine(matriksB[1, 0]);
+                    Console.WriteLine(matriksB[1, 1]);
+
+                    //matriksB = Array.ConvertAll(kunciline, int.Parse);
+                    range = int.Parse(lines[lines.Length - 1]);
+                    kprivate.Text = lines[lines.Length - 2];
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void browse_file_Click(object sender, EventArgs e)
@@ -83,6 +118,89 @@ namespace Skripsi
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void btn_decrypt_Click(object sender, EventArgs e)
+        {
+            if(kprivate.Text == "")
+            {
+                MessageBox.Show("Masukkan kunci private");
+            }
+            else if(ciphertext.Text == "")
+            {
+                MessageBox.Show("Masukkan ciphertext");
+            }
+            else
+            {
+                int[,] matriksK2 = { { 0, 0 }, { 0, 0 } };
+
+                string[] cipherteks = ciphertext.Text.Split("");
+
+                for(int i=0;i<cipherteks.Length; i++)
+                {
+                    Console.WriteLine(cipherteks[i]);
+                }
+
+                int pangkatMatriksK2 = int.Parse(kprivate.Text);
+                for (int i = 1; i < pangkatMatriksK2; i++)
+                {
+                    if (i == 1)
+                    {
+                        for (int j = 0; j <= 3; j++)
+                        {
+                            if (j == 0)
+                            {
+                                matriksK2[0, 0] += ((matriksB[0, 0] * matriksB[0, 0]) + (matriksB[0, 1] * matriksB[1, 0]));
+                            }
+                            else if (j == 1)
+                            {
+                                matriksK2[0, 1] += ((matriksB[0, 1] * matriksB[0, 0]) + (matriksB[0, 1] * matriksB[1, 1]));
+                            }
+                            else if (j == 2)
+                            {
+                                matriksK2[1, 0] += ((matriksB[1, 0] * matriksB[0, 0]) + (matriksB[1, 1] * matriksB[1, 0]));
+                            }
+                            else if (j == 3)
+                            {
+                                matriksK2[1, 1] += ((matriksB[1, 0] * matriksB[0, 1]) + (matriksB[1, 1] * matriksB[1, 1]));
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        int[,] helperMatriksK2 =
+                         {
+                            { matriksK2[0, 0], matriksK2[0, 1] },
+                            { matriksK2[1, 0], matriksK2[1, 1] }
+                        };
+                        for (int j = 0; j <= 3; j++)
+                        {
+                            if (j == 0)
+                            {
+                                matriksK2[0, 0] = ((helperMatriksK2[0, 0] * matriksB[0, 0]) + (helperMatriksK2[0, 1] * matriksB[1, 0])) % range;
+
+                            }
+                            else if (j == 1)
+                            {
+                                matriksK2[0, 1] = ((helperMatriksK2[0, 0] * matriksB[0, 1]) + (helperMatriksK2[0, 1] * matriksB[1, 1])) % range;
+                            }
+                            else if (j == 2)
+                            {
+                                matriksK2[1, 0] = ((helperMatriksK2[1, 0] * matriksB[0, 0]) + (helperMatriksK2[1, 1] * matriksB[1, 0])) % range;
+                            }
+                            else if (j == 3)
+                            {
+                                matriksK2[1, 1] = ((helperMatriksK2[1, 0] * matriksB[0, 1]) + (helperMatriksK2[1, 1] * matriksB[1, 1])) % range;
+                            }
+                        }
+                    }
+
+                }
+
+                //string[] ciphertext = ciphertext.Text
+                //for (int i = 0; i)
             }
         }
     }
