@@ -53,7 +53,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label_x = new System.Windows.Forms.Label();
             this.sign = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
@@ -283,7 +282,7 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button3.Location = new System.Drawing.Point(1067, 161);
+            this.button3.Location = new System.Drawing.Point(1068, 161);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(167, 43);
@@ -298,7 +297,6 @@
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.label_x);
             this.groupBox2.Controls.Add(this.sign);
-            this.groupBox2.Controls.Add(this.button9);
             this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.button8);
             this.groupBox2.Controls.Add(this.button7);
@@ -373,27 +371,17 @@
             this.sign.UseVisualStyleBackColor = true;
             this.sign.Click += new System.EventHandler(this.sign_Click);
             // 
-            // button9
-            // 
-            this.button9.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button9.Location = new System.Drawing.Point(614, 252);
-            this.button9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(145, 43);
-            this.button9.TabIndex = 34;
-            this.button9.Text = "Save Private Key";
-            this.button9.UseVisualStyleBackColor = true;
-            // 
             // button8
             // 
             this.button8.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button8.Location = new System.Drawing.Point(458, 252);
             this.button8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(141, 43);
+            this.button8.Size = new System.Drawing.Size(198, 43);
             this.button8.TabIndex = 33;
-            this.button8.Text = "Save Public Key";
+            this.button8.Text = "Save Kunci";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button7
             // 
@@ -645,7 +633,6 @@
         private Label label14;
         private TextBox textBox3;
         private Button sign;
-        private Button button9;
         private Button button8;
         private Label label15;
         private Label label_x;

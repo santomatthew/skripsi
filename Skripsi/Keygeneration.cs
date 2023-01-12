@@ -5,10 +5,12 @@ namespace Skripsi
 {
     public partial class Form1 : Form
     {
+        int[,] globalMatriksB = { { 0, 0 }, { 0, 0 } };
         public Form1()
         {
             InitializeComponent();
             this.BackColor = Color.AliceBlue;
+           
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -82,10 +84,7 @@ namespace Skripsi
 
 
 
-        private void generateMatrix(int maximum)
-        {
-
-        }
+       
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -277,7 +276,7 @@ namespace Skripsi
                     matriksB[i, j] = ((first[i, j] + second[i, j] + third[i, j]) % range);
                 }
             }
-
+            globalMatriksB = matriksB;
 
 
             int privateKey = int.Parse(this.key_d1.Text);
@@ -384,10 +383,10 @@ namespace Skripsi
                 StreamWriter sw = new StreamWriter(fstream);
                 SeekOrigin seekorigin = new SeekOrigin();
                 sw.BaseStream.Seek(0, seekorigin);
-                sw.WriteLine(int.Parse(matriks_d1.Text));
-                sw.WriteLine(int.Parse(matriks_d2.Text));
-                sw.WriteLine(int.Parse(matriks_d3.Text));
-                sw.WriteLine(int.Parse(matriks_d4.Text));
+                sw.WriteLine(globalMatriksB[0,0]);
+                sw.WriteLine(globalMatriksB[0,1]);
+                sw.WriteLine(globalMatriksB[1,0]);
+                sw.WriteLine(globalMatriksB[1,1]);
                 sw.WriteLine(int.Parse(kprivat1.Text));
                 sw.WriteLine(int.Parse(kprivat2.Text));
                 sw.WriteLine(int.Parse(kprivat3.Text));
